@@ -108,7 +108,7 @@ export default class Articles extends Vue {
       if (getScrollTop() + getWindowHeight() > getDocumentHeight() - 150) {
         if (this.isLoadEnd === false && this.isLoading === false) {
           this.handleSearch()
-        }
+        }2456844450@
       }
     };
     document.addEventListener('scroll', lazyload)
