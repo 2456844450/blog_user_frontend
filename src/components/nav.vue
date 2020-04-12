@@ -56,7 +56,7 @@
                 </el-button>
                 <el-button size="small"
                             type="danger"
-                            @click="handleClick('rigister')">
+                            @click="handleClick('register')">
                         注册
                 </el-button>
             </div>
@@ -70,7 +70,7 @@
             <div class="nav-mobile-logo">
                 <router-link to="/">
                     <img class="logo fl"
-                        src="../assets/logo.jpg"
+                        src="../assets/userLogo.jpg"
                         alt="AnZhou">
                 </router-link>
             </div>
@@ -108,6 +108,9 @@
                     class="item">
                     <router-link to="/about">关 于</router-link>
                 </div>
+				<div class="item">
+					<router-link to="/practice">练习</router-link>
+				</div>
                 <div @click="handleClickMenu('/login')"
                     class="item">
                     <span v-if="userInfo._id">{{ userInfo.name }}</span>
@@ -189,12 +192,18 @@ export default class Nav extends Vue {
             index: '7',
             path: '/about',
             name: '关于'
-        }
+        },
+		{
+			index: '8',
+			path: '/practice',
+			name: '练习'
+		}
     ];
     private activeIndex: string = "0"
     private enterSlideUp: boolean = false
     private leaveSlideDown: boolean = false
-    private isShow: boolean = isMobileOrPc()
+    private isShow: boolean = false;
+    private isMobile: boolean = isMobileOrPc();
 
     mounted(){
         this.routeChange(this.$route, this.$route)
@@ -242,6 +251,7 @@ export default class Nav extends Vue {
         }
         if (route === '/register') {
             this.handleFlag = 'register'
+    
             this.visible = true
         }
         if (route === '/logout') {
@@ -311,6 +321,7 @@ export default class Nav extends Vue {
     }
 
     private handleClick(value: string): void {
+
         this.handleFlag = value;
         this.visible = true
     }
@@ -334,7 +345,7 @@ export default class Nav extends Vue {
   line-height: 60px;
   .nav-mobile-logo {
     flex: 1;
-    margin-top: 5px;
+    // margin-top: 5px;
     margin-left: 10px;
   }
   .title {
@@ -344,7 +355,7 @@ export default class Nav extends Vue {
   .menu {
     flex: 1;
     font-size: 34px;
-    color: #409eff;
+    color: #303133;
   }
 }
 .nav-mobile-content {

@@ -133,6 +133,8 @@ export function timestampToTime(timestamp: Date | any, dayMinSecFlag: boolean) {
   return Y + M + D + h + m + s;
 }
 
+
+// 判断是否是移动端
 export function isMobileOrPc() {
   if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
     return true;

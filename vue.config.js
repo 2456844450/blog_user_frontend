@@ -10,7 +10,9 @@ module.exports = {
   lintOnSave: false,
   // webpack配置
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
-  chainWebpack: () => {},
+  chainWebpack: () => {
+
+  },
   configureWebpack: config => {
     if (process.env.NODE_ENV === "production") {
       // 为生产环境修改配置...
@@ -60,7 +62,7 @@ module.exports = {
   pwa: {},
   // webpack-dev-server 相关配置
   devServer: {
-    open: process.platform === "darwin",
+    open: true, //process.platform === "darwin"
     host: "localhost",
     port: 8080, //8080,
     https: false,

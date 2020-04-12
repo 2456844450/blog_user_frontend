@@ -20,7 +20,7 @@ import Slider from "@/components/slider.vue"
 import Footer from "@/components/footer.vue"
 import ArrowUp from "@/components/arrowUp.vue"
 import { isMobileOrPc } from "@/utils/utils"
-
+// 如果是移动端   先获取窗口的宽度    改变字体大小  
 if (isMobileOrPc()) {
 	let width = window.screen.width
 	window.document.getElementsByTagName("html")[0].style.fontSize =
@@ -45,7 +45,7 @@ export default class App extends Vue {
   @Watch("$route")
   routeChange(val: Route, oldVal: Route): void {
 	  const referrer: any = document.getElementById("referrer")
-	  if (val.path === "/") {
+	  if (val.path === "/" || val.path === '/practiceDetail') {
 		  this.isShowNav = false
 		  referrer.setAttribute("content", "always")
 	  } else {
@@ -77,7 +77,7 @@ export default class App extends Vue {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
   width: 1200px;
   margin: 0 auto;

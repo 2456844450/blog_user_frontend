@@ -1,8 +1,9 @@
 <template>
-  <el-dialog title="登录"
+  <el-dialog :title="handleFlag === 'login' ? '登录':handleFlag === 'register'?'注册':''"
              :width="isMobile ? '90%' : '50%'"
              :visible="dialogVisible"
              @close="cancel">
+     
     <el-form>
       <el-formItem label="邮箱"
                    :label-width="formLabelWidth">
@@ -18,6 +19,7 @@
                   v-model="params.password"
                   autocomplete="off"></el-input>
       </el-formItem>
+  
       <el-formItem v-if="handleFlag === 'register'"
                    label="昵称"
                    :label-width="formLabelWidth">
@@ -42,8 +44,8 @@
     </el-form>
     <div slot="footer"
          class="dialog-footer">
-      <el-button type="success"
-                 @click="handleOAuth">github 授权登录</el-button>
+      <!-- <el-button type="success"
+                 @click="handleOAuth">github 授权登录</el-button> -->
       <el-button v-if="handleFlag === 'login'"
                  :loading="btnLoading"
                  type="primary"
@@ -82,7 +84,9 @@ export default class RegisterAndLogin extends Vue {
   };
 
   // lifecycle hook
-  mounted() {}
+  mounted() {
+
+  }
 
   // computed
   get dialogVisible(): boolean {
@@ -154,8 +158,10 @@ export default class RegisterAndLogin extends Vue {
   private async submit(): Promise<void> {
     let data: any = "";
     this.btnLoading = true;
+
     if (this.handleFlag === "register") {
       data = await this.$https.post(this.$urls.register, this.params);
+      
     } else {
       data = await this.$https.post(this.$urls.login, this.params);
     }

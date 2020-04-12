@@ -160,6 +160,7 @@ export default class ArticleDetail extends Vue {
   }
 
   private async handleAddComment(): Promise<void> {
+    // console.log(this.articleDetail._id)
     if (!this.articleDetail._id) {
       this.$message({
         message: "该文章不存在！",
@@ -264,6 +265,8 @@ export default class ArticleDetail extends Vue {
       this.params
     );
     this.isLoading = false;
+    
+    
     // console.log(data)
     this.articleDetail = data;
     const article = markdown.marked(data.content);
@@ -271,11 +274,11 @@ export default class ArticleDetail extends Vue {
       this.articleDetail.content = res.content;
       this.articleDetail.toc = res.toc;
     });
-    let keyword = data.keyword.join(",");
+ 
     let description = data.desc;
     let title = data.title;
     document.title = title;
-    document.querySelector("#keywords").setAttribute("content", keyword);
+    // document.querySelector("#keywords").setAttribute("content", keyword);
     document.querySelector("#description").setAttribute("content", description);
   }
 
@@ -332,7 +335,7 @@ export default class ArticleDetail extends Vue {
   border-left: 1px solid #eee;
 }
 .article {
-  margin-left: 50px;
+ 
   width: 100%;
   .header {
     .title {

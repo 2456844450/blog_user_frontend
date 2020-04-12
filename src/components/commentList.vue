@@ -26,13 +26,13 @@
             {{item.user.type === 0 ? '(作者)' : ''}}
           </div>
           <div class="time">
-            {{formatTime(item.create_time)}}
+            {{item.create_time}}
           </div>
         </div>
       </div>
       <div class="comment-detail">{{item.content}}</div>
       <div class="item-comment">
-        <div @click="showCommentModel(item._id, item.user)" 
+        <div @click="showCommentModel(item._id, item.user.user_id)" 
               class="message">
           <el-button size="small">回复</el-button>
         </div>
@@ -57,20 +57,19 @@
                 {{e.user.type === 0 ? '(作者)' : ''}}
               </div>
               <div class="time">
-                {{formatTime(e.create_time)}}
+                {{e.create_time}}
               </div>
             </div>
           </div>
           <div class="comment-detail">
-            {{'@' + e.to_user.name}}
-            {{e.to_user.type === 0 ? '(作者)' : ''}}: {{e.content}}
+            {{e.content}}
           </div>
-          <div class="item-comment">
+          <!-- <div class="item-comment">
             <div class="message">
               <el-button @click="showCommentModel(item._id, item.user, e.user)"
                           size="small">回复</el-button>
             </div>
-          </div>
+          </div> -->
       </div>
     </div>
     <Comment :visible="visible"
@@ -104,7 +103,9 @@ export default class CommentList extends Vue {
     avatar: "",
     type: 0
   };
-
+  mounted(){
+    // console.log(this.numbers)
+  }
   private handleCancel(): void {
     this.visible = false;
   }
@@ -116,7 +117,7 @@ export default class CommentList extends Vue {
   }
 
   // 添加评论
-  private showCommentModal(
+  private showCommentModel(
     commitId: string,
     user: ToUser,
     secondUser?: ToUser

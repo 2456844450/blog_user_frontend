@@ -99,7 +99,7 @@ export default class Articles extends Vue {
   private href: string = 
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:8080/articleDetail?article_id='
-      : 'http://123.57.35.115/articleDetail?article_id='
+      : 'http://123.57.35.115:8080/articleDetail?article_id='
 
 
   mounted(): void {
